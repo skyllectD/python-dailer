@@ -1,0 +1,551 @@
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.status-bar {
+  display: flex;
+  align-items: center;
+}
+
+.status-indicator {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  background-color: #e74c3c;
+}
+
+.status-indicator.registered {
+  background-color: #2ecc71;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Screens */
+.screen {
+  display: none;
+  padding: 1rem;
+  height: 100%;
+  flex-direction: column;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* Dialer screen */
+.number-display {
+  margin-bottom: 1rem;
+}
+
+.number-display input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.dialpad {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.dialpad-row {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
+.dialpad-btn {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dialpad-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.call-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  padding: 1rem 0;
+}
+
+.control-btn {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.control-btn.call {
+  background-color: #2ecc71;
+}
+
+.control-btn.hangup {
+  background-color: #e74c3c;
+}
+
+.control-btn img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+/* Call screen */
+.call-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.call-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.call-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.call-duration {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.call-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.action-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.active-calls-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.active-call-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  background-color: #fff;
+}
+
+.active-call-selected {
+  border: 1px solid #3498db;
+  border-radius: 8px;
+  background-color: #ecf0f1;
+}
+
+/* Settings form */
+.settings-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: #f5f5f5;
+}
+
+/* Lists */
+.list {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.list-item:hover {
+  background-color: #f5f5f5;
+}
+
+.list-item-info {
+  flex: 1;
+}
+
+.list-item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Dialog */
+.dialog {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog.active {
+  display: flex;
+}
+
+.dialog-content {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+}
+
+/* Filter buttons */
+.filter-options {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filter-btn {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background-color: #3498db;
+  color: #fff;
+  border-color: #3498db;
+}
+
+/* Status message */
+.status-message {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 200;
+}
+
+.status-message.active {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .dialpad-btn {
+    width: 5rem;
+    height: 5rem;
+    font-size: 2rem;
+  }
+
+  .control-btn {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .control-btn img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.call-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.call-item-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.call-item-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.switch-call-btn,
+.end-call-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.switch-call-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.switch-call-btn:hover {
+  background-color: #0056b3;
+}
+
+.end-call-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.end-call-btn:hover {
+  background-color: #c82333;
+}
+/* Conference Call List Container */
+.conference-call-container {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Conference Group Name */
+.conference-group-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* List Item for Calls */
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+/* Call Item Info */
+.list-item-info {
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.call-item-number {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}
+
+.call-item-details {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Empty List Message */
+.empty-list {
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    padding: 10px;
+}
+.end-conference-btn {
+    margin-top: 10px;
+    padding: 0.5rem 1rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.end-conference-btn:hover {
+    background-color: #c82333;
+}
+
+.merge-btn {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.merge-btn:hover {
+    background-color: #0056b3;
+}
+.merge-btn.hidden {
+  display: none;
+}
+
+.merge-btn.visible {
+  display: inline-block; /* or block depending on your layout */
+}
+
+.switch-call-btn.hidden {
+  display: none;
+}
+
+.switch-call-btn.visible {
+  display: inline-block; /* or block depending on your layout */
+}
+.d-flex{
+  display: flex;
+}
+.flex-column{
+  flex-direction: column;
+}
+.back-button{
+  display: block;
+  padding: 8px 18px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
+  background-color: green;
+  box-shadow: none;
+  cursor: pointer;
+  color: white;
+  transition: all .3s ease-in-out;
+  margin: 10px;
+}
+.back-button:hover{
+  background-color: white;
+  color: green;
+  border: 1px solid green;
+
+}

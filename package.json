@@ -1,0 +1,45 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "python-shell": "^5.0.0"
+  },
+  "devDependencies": {
+    "electron": "35.1.5",
+    "electron-builder": "^26.0.12",
+    "electron-reload": "^2.0.0-alpha.1"
+  },
+  "build": {
+    "files": [
+      "main.js",
+      "index.html",
+      "package.json",
+      "node_modules/**/*",
+      "dist/**/*",
+      "python/**/*",
+      "assets/**/*",
+      "styles.css",
+      "preload.js",
+      "renderer.js",
+      "softphone.spec"
+    ],
+    "extraResources": [
+      {
+        "from": "python",
+        "to": "python",
+        "filter": ["**/*"]
+      }
+    ],
+    "asar": true
+  }
+}

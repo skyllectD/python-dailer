@@ -1,0 +1,19 @@
+{
+  "sip": {
+    "username": "6009",
+    "password": "WbZBA$I3%U!SC4%LkD$L",
+    "domain": "phone.aptask.com",
+    "proxy": "phone.aptask.com;transport=tcp"
+  },
+  "audio": {
+    "input_device": null,
+    "output_device": null
+  },
+  "ui": {
+    "theme": "light",
+    "compact_mode": false
+  },
+  "advanced": {
+    "log_level": "info"
+  }
+}

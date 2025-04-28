@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Softphone</title>
+  <link href="styles.css" rel="stylesheet">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>Softphone</h1>
+      <div class="status-bar">
+        <span id="registration-status" class="status-indicator">Not Registered</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <button id="back-button" class="back-button">Back</button>
+      <!-- Dialer Screen -->
+      <section id="dialer-screen" class="screen active">
+        <div class="number-display">
+          <input type="text" id="phone-number" placeholder="Enter phone number or SIP URI" value="+12092507215">
+        </div>
+
+        <div class="dialpad">
+          <div class="dialpad-row">
+            <button class="dialpad-btn" data-digit="1">1</button>
+            <button class="dialpad-btn" data-digit="2">2</button>
+            <button class="dialpad-btn" data-digit="3">3</button>
+          </div>
+          <div class="dialpad-row">
+            <button class="dialpad-btn" data-digit="4">4</button>
+            <button class="dialpad-btn" data-digit="5">5</button>
+            <button class="dialpad-btn" data-digit="6">6</button>
+          </div>
+          <div class="dialpad-row">
+            <button class="dialpad-btn" data-digit="7">7</button>
+            <button class="dialpad-btn" data-digit="8">8</button>
+            <button class="dialpad-btn" data-digit="9">9</button>
+          </div>
+          <div class="dialpad-row">
+            <button class="dialpad-btn" data-digit="*">*</button>
+            <button class="dialpad-btn" data-digit="0">0</button>
+            <button class="dialpad-btn" data-digit="#">#</button>
+          </div>
+        </div>
+
+        <div class="call-controls">
+          <button id="call-btn" class="control-btn call">
+            <img src="assets/call.svg" alt="Call">
+          </button>
+        </div>
+      </section>
+
+      <!-- Active Call Screen -->
+      <section id="call-screen" class="screen">
+        <div class="call-info">
+          <h2 id="call-status">Dialing...</h2>
+          <h3 id="call-number">(No Number)</h3>
+          <div id="call-duration">00:00</div>
+        </div>
+
+        <div class="active-calls-list" id="active-calls-list">
+          <!-- Active calls will be dynamically added here -->
+        </div>
+
+        <div id="conference-call-list" class="conference-call-container">
+          <!-- Conference call items will be dynamically added here -->
+        </div>
+
+        <div class="call-actions">
+          <button id="mute-btn" class="action-btn">Mute</button>
+          <button id="hold-btn" class="action-btn">Hold</button>
+          <button id="merge-btn" class="action-btn">
+            <img src="assets/merge-calls.svg" alt="Merge Calls">
+          </button>
+          <button id="open-dialer-btn" class="control-btn">
+            <img src="assets/dialer.svg" alt="Open Dialer">
+          </button>
+        </div>
+
+        <div class="call-controls">
+          <button id="hangup-btn" class="control-btn hangup">
+            <img src="assets/hangup.svg" alt="Hang Up">
+          </button>
+        </div>
+      </section>
+      
+      <!-- Incoming Call Screen -->
+      <section id="incoming-call-screen" class="screen">
+        <div class="call-info">
+          <h2>Incoming Call</h2>
+          <h3 id="incoming-number">(No Number)</h3>
+        </div>
+
+        <div class="call-controls">
+          <button id="answer-btn" class="control-btn call">
+            <img src="assets/call.svg" alt="Answer">
+          </button>
+          <button id="reject-btn" class="control-btn hangup">
+            <img src="assets/hangup.svg" alt="Reject">
+          </button>
+        </div>
+      </section>
+      
+      <!-- SIP Settings Screen -->
+      <section id="sip-settings-screen" class="screen">
+        <h2>SIP Account Settings</h2>
+        <div class="settings-form">
+          <div class="form-group">
+            <label for="sip-username">Username:</label>
+            <input type="text" id="sip-username" placeholder="SIP Username">
+          </div>
+          <div class="form-group">
+            <label for="sip-password">Password:</label>
+            <input type="password" id="sip-password" placeholder="SIP Password">
+          </div>
+          <div class="form-group">
+            <label for="sip-domain">Domain:</label>
+            <input type="text" id="sip-domain" placeholder="sip.example.com">
+          </div>
+          <div class="form-group">
+            <label for="sip-proxy">Proxy (Optional):</label>
+            <input type="text" id="sip-proxy" placeholder="proxy.example.com">
+          </div>
+          <div class="form-actions">
+            <button id="save-sip-btn" class="btn">Save</button>
+            <button id="register-sip-btn" class="btn">Register</button>
+            <button id="unregister-sip-btn" class="btn">Unregister</button>
+            <button id="back-from-sip-btn" class="btn">Back</button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Audio Settings Screen -->
+      <section id="audio-settings-screen" class="screen">
+        <h2>Audio Settings</h2>
+        <div class="settings-form">
+          <div class="form-group">
+            <label for="input-device">Microphone:</label>
+            <select id="input-device">
+              <option value="">Loading devices...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="output-device">Speaker:</label>
+            <select id="output-device">
+              <option value="">Loading devices...</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button id="save-audio-btn" class="btn">Save</button>
+            <button id="test-audio-btn" class="btn">Test Audio</button>
+            <button id="back-from-audio-btn" class="btn">Back</button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Contacts Screen -->
+      <section id="contacts-screen" class="screen">
+        <h2>Contacts</h2>
+        <div class="search-bar">
+          <input type="text" id="contacts-search" placeholder="Search contacts...">
+        </div>
+        <div id="contacts-list" class="list">
+          <!-- Contacts will be dynamically added here -->
+        </div>
+        <div class="form-actions">
+          <button id="add-contact-btn" class="btn">Add Contact</button>
+          <button id="back-from-contacts-btn" class="btn">Back</button>
+        </div>
+        
+        <!-- Contact Form Dialog -->
+        <div id="contact-form-dialog" class="dialog">
+          <div class="dialog-content">
+            <h3 id="contact-form-title">Add Contact</h3>
+            <div class="form-group">
+              <label for="contact-name">Name:</label>
+              <input type="text" id="contact-name" placeholder="Contact Name">
+            </div>
+            <div class="form-group">
+              <label for="contact-number">Number:</label>
+              <input type="text" id="contact-number" placeholder="Phone Number or SIP URI">
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email (Optional):</label>
+              <input type="email" id="contact-email" placeholder="Email Address">
+            </div>
+            <div class="form-actions">
+              <button id="save-contact-btn" class="btn">Save</button>
+              <button id="cancel-contact-btn" class="btn">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Call History Screen -->
+      <section id="call-history-screen" class="screen">
+        <h2>Call History</h2>
+        <div class="filter-options">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="incoming">Incoming</button>
+          <button class="filter-btn" data-filter="outgoing">Outgoing</button>
+          <button class="filter-btn" data-filter="missed">Missed</button>
+        </div>
+        <div id="call-history-list" class="list">
+          <!-- Call history entries will be dynamically added here -->
+        </div>
+        <div class="form-actions">
+          <button id="clear-history-btn" class="btn">Clear History</button>
+          <button id="back-from-history-btn" class="btn">Back</button>
+        </div>
+      </section>
+      
+      <!-- About Screen -->
+      <section id="about-screen" class="screen">
+        <h2>About Softphone</h2>
+        <div class="about-content">
+          <p>Version: 1.0.0</p>
+          <p>A cross-platform softphone application built with Electron and Python, using PJSUA C API.</p>
+        </div>
+        <div class="form-actions">
+          <button id="back-from-about-btn" class="btn">Back</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Status Messages -->
+    <div id="status-message" class="status-message"></div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
